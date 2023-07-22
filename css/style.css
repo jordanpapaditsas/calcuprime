@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url(../assets/calculator-bg-2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#container {
+  border: 2px solid rgb(0, 0, 0);
+  width: 22rem;
+  border-radius: 1.4rem;
+  padding: 1rem;
+  padding-bottom: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+  top: 10rem;
+
+}
+
+#display {
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 0.5rem;
+  width: 90%;
+  height: 13vh;
+  align-items: flex-end;
+  justify-content: center;
+  display: flex;
+  font-size: 2rem;
+  overflow: hidden;
+  margin: 0.7rem 0;
+  color: rgb(2, 2, 2);
+  background-color: rgb(179, 171, 171);
+}
+
+button {
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  background-color: rgb(132, 145, 201);
+}
+
+#modifiers-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+#clear, #delete {
+  width: 8rem;
+  height: 4rem;
+}
+
+#calc-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+#calc-grid button {
+  width: 4rem;
+  height: 4rem;
+  text-align: center;
+}
+
+#calc-grid #equals {
+  width: 8.2rem;
+}
+
+footer {
+  margin-top: auto;
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+/* Hover Effects */
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.08);
+}
+
+#equals:hover {
+  background-color: rgb(11, 146, 22);
+}
+
+#delete:hover {
+  background-color: rgb(136, 7, 7);
+}
+
+#clear:hover {
+  background-color: rgb(231, 85, 32);
+}
+
+
+
+
+
