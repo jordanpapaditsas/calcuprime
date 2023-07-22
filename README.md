@@ -1,7 +1,7 @@
 # Calculator
 
 ## Description 
-A web-based application with a fully interactive user interface that provides various mathematical operations,  
+A web-based application made with Flexbox layout, with a fully interactive user interface that provides various mathematical operations,  
 including Modulo, Addition, Subtraction, Multiplication, Division, Power, and Square Root.
 
 ## Live Preview
