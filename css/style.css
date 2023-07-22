@@ -37,11 +37,10 @@ body {
   border-radius: 0.5rem;
   width: 90%;
   height: 13vh;
+  display: flex;
   align-items: flex-end;
   justify-content: center;
-  display: flex;
-  font-size: 2rem;
-  overflow: hidden;
+  font-size: 2.5rem;
   margin: 0.7rem 0;
   color: rgb(2, 2, 2);
   background-color: rgb(179, 171, 171);
@@ -52,6 +51,20 @@ button {
   font-size: 1.4rem;
   background-color: rgb(132, 145, 201);
   color: black;
+}
+
+#sqrt-op, #power-op, #modulo-op,
+#divide-op, #multiply-op, #add-op,
+#subtract-op {
+  background-color: rgb(44, 66, 167);
+}
+
+#clear, #delete {
+  background-color: rgb(216, 127, 45);
+}
+
+#equals {
+  background-color: rgb(6, 100, 14);
 }
 
 #modifiers-grid {
@@ -95,20 +108,17 @@ footer {
 /* Hover Effects */
 button:hover {
   cursor: pointer;
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 #equals:hover {
-  background-color: rgb(11, 146, 22);
+  background-color: rgb(74, 133, 80);
 }
 
-#delete:hover {
-  background-color: rgb(136, 7, 7);
+#delete:hover, #clear:hover {
+  background-color: rgb(219, 163, 88);
 }
 
-#clear:hover {
-  background-color: rgb(231, 85, 32);
-}
 
 
 

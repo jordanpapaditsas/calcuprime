@@ -1,66 +1,64 @@
-let num1 = 0;
-let operator = '+';
-let num2 = 0;
+let operator = '';
 let result = 0;
 
-const addition = function(a, b) {
-  return  a + b;
+const addition = function(num1, num2) {
+  return  num1 + num2;
 };
 
-const subtraction = function(a, b) {
-  return a - b;
+const subtraction = function(num1, num2) {
+  return num1 - num2;
 };
 
-const multiplication = function(a, b) {
-  return a * b;
+const multiplication = function(num1, num2) {
+  return num1 * num2;
 };
 
-const division = function(a, b) {
-  if (a <= 0) {
+const division = function(num1, num2) {
+  if (num1 <= 0) {
     return 'Error, cannot divide with 0!';
   } else {
-    return a / b;
+    return num1 / num2;
   }
 };
 
-const modulo = function(a, b) {
-  return a % b;
-}
+const modulo = function(num1, num2) {
+  return num1 % num2;
+};
 
-const power = function(a, b) {
-  return a ** b;
-}
+const power = function(num1, num2) {
+  return num1 ** num2;
+};
 
-const squareRoot = function(a) {
-  return Math.sqrt(a);
-}
+const squareRoot = function(num) {
+  return Math.sqrt(num);
+};
 
-const operation = function(a, operator, b) {
+const operation = function(num1, operator, num2) {
   switch (operator) {
     case '+':
-      result = addition(a, b);
+      result = addition(num1, num2);
       break;
       case '-':
-      result = subtraction(a, b);
+      result = subtraction(num1, num2);
       break;
       case '*':
-      result = multiplication(a, b);
+      result = multiplication(num1, num2);
       break;
       case '/':
-      result = division(a, b);
+      result = division(num1, num2);
       break;
       case '%':
-      result = modulo(a, b);
+      result = modulo(num1, num2);
       break;
       case 'x²':
-      result = power(a, b);
+      result = power(num1, num2);
       break;
       case '√':
-      result = squareRoot(a);  
+      result = squareRoot(num1);  
       break;
   }
 };
 
-operation(4, '√');
+operation(125, 'x²', 1/3);
 
-console.log(result)
+console.log(result);
