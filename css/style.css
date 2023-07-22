@@ -52,6 +52,7 @@ button {
   border-radius: 1rem;
   font-size: 1.4rem;
   background-color: rgb(132, 145, 201);
+  color: black;
 }
 
 #modifiers-grid {
