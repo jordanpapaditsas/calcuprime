@@ -50,6 +50,8 @@ span {
   padding-right: 0.2rem;
   color: rgb(2, 2, 2);
   background-color: rgb(179, 171, 171);
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 button {
