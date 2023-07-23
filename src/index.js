@@ -1,13 +1,14 @@
 let currentInput = '';
 let firstInput = '';
-let secondInput = '';
+let operator = '';
 let result = '';
+let defaultDisplay = '0';
 
 // Query Selectors
 const displayScreen = document.querySelector('#display');
 const clearBtn = document.querySelector('#clear');
 const delBtn = document.querySelector('#delete');
-const allCalcBtns = document.querySelectorAll('.calc-btns');
+const allCalcBtns = document.querySelectorAll('.calc-btn');
 const addOperatorBtn = document.querySelector('#add-op');
 const subOperatorBtn = document.querySelector('#subtract-op');
 const mulOperatorBtn = document.querySelector('#multiply-op');
@@ -25,19 +26,42 @@ allCalcBtns.forEach((button) => {
   button.addEventListener('click', showDisplayInput);
 });
 
+addOperatorBtn.addEventListener('click', getAddition);
+equalsBtn.addEventListener('click', showResults);
+
+function showResults() {
+  result = operate(parseFloat(firstInput), operator, parseFloat(currentInput));
+
+  displayScreen.textContent = result;
+  firstInput = '';
+  operator = '';
+  currentInput = result;
+}
+
+function getAddition(event) {
+  let target = event.target;
+ 
+  if (target && operator === '') {
+    operator = '+';
+    displayScreen.textContent = operator;
+    firstInput += currentInput;
+    currentInput = '';
+  }
+}
 
 function showDisplayInput(event) {
   let target = event.target;
 
-  if (target.className === 'calc-btns') {
+  if (defaultDisplay === '0') {
+    defaultDisplay = '';
+    displayScreen.textContent = '';
+  }
+
+  if (target.className === 'calc-btn' ) {
     displayScreen.textContent += target.textContent;
-    currentInput = target.textContent;
+    currentInput += target.textContent;
   }
 }
-
-
-
-
 
 function deleteLastInput() {
   currentInput = displayScreen.textContent;
