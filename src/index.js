@@ -2,7 +2,6 @@ let currentInput = '';
 let firstInput = '';
 let operator = '';
 let result = '';
-let defaultDisplay = '0';
 
 // Query Selectors
 const displayScreen = document.querySelector('#display');
@@ -14,28 +13,103 @@ const subOperatorBtn = document.querySelector('#subtract-op');
 const mulOperatorBtn = document.querySelector('#multiply-op');
 const divOperatorBtn = document.querySelector('#divide-op');
 const modOperatorBtn = document.querySelector('#modulo-op');
-const powerOpBtn = document.querySelector('#power-op');
-const sqrtOpBtn = document.querySelector('#sqrt-op');
+const powerOperatorBtn = document.querySelector('#power-op');
+const sqrtOperatorBtn = document.querySelector('#sqrt-op');
 const equalsBtn = document.querySelector('#equals');
 const splitterBtn = document.querySelector('#splitter');
 
 // Event Listeners
 clearBtn.addEventListener('click', clearDisplay);
 delBtn.addEventListener('click', deleteLastInput);
+equalsBtn.addEventListener('click', showResults);
 allCalcBtns.forEach((button) => {
   button.addEventListener('click', showDisplayInput);
 });
-
 addOperatorBtn.addEventListener('click', getAddition);
-equalsBtn.addEventListener('click', showResults);
+subOperatorBtn.addEventListener('click', getSubtraction);
+mulOperatorBtn.addEventListener('click', getMultiplication);
+divOperatorBtn.addEventListener('click', getDivision);
+modOperatorBtn.addEventListener('click', getModulo);
+powerOperatorBtn.addEventListener('click', getPower);
+sqrtOperatorBtn.addEventListener('click', getSqrt);
 
 function showResults() {
-  result = operate(parseFloat(firstInput), operator, parseFloat(currentInput));
+  const num1 = convertStringIntoNumber(firstInput);
+  const num2 = convertStringIntoNumber(currentInput);
+  result = operate(num1, operator, num2);
 
   displayScreen.textContent = result;
+  displayScreen.style.textAlign = 'center';
   firstInput = '';
   operator = '';
   currentInput = result;
+}
+
+function getSqrt(event) {
+  let target = event.target;
+
+  if (target && operator === '') {
+    operator = '√';
+    displayScreen.textContent = operator;
+    firstInput += currentInput;
+    currentInput = '';
+  }
+} 
+
+function getPower(event) {
+  let target = event.target;
+
+  if (target && operator === '') {
+    operator = 'x²';
+    displayScreen.textContent = operator;
+    firstInput += currentInput;
+    currentInput = '';
+  }
+} 
+
+function getModulo(event) {
+  let target = event.target;
+
+  if (target && operator === '') {
+    operator = '%';
+    displayScreen.textContent = operator;
+    firstInput += currentInput;
+    currentInput = '';
+  }
+} 
+
+function getDivision(event) {
+  let target = event.target;
+
+  if (target && operator === '') {
+    operator = '÷';
+    displayScreen.textContent = operator;
+    firstInput += currentInput;
+    currentInput = '';
+  }
+
+} 
+
+function getMultiplication(event) {
+  let target = event.target;
+
+  if (target && operator === '') {
+    operator = 'x';
+    displayScreen.textContent = operator;
+    firstInput += currentInput;
+    currentInput = '';
+  }
+}
+
+function getSubtraction(event) {
+  let target = event.target;
+
+  if (target && operator === '') {
+    operator = '-';
+    displayScreen.textContent = operator;
+    firstInput += currentInput;
+    currentInput = '';
+  }
 }
 
 function getAddition(event) {
@@ -52,30 +126,20 @@ function getAddition(event) {
 function showDisplayInput(event) {
   let target = event.target;
 
-  if (defaultDisplay === '0') {
-    defaultDisplay = '';
-    displayScreen.textContent = '';
-  }
-
-  if (target.className === 'calc-btn' ) {
+  if (target.className === 'calc-btn') {
     displayScreen.textContent += target.textContent;
     currentInput += target.textContent;
   }
 }
 
-function deleteLastInput() {
-  currentInput = displayScreen.textContent;
-  currentInput = currentInput.slice(0, -1);
-  displayScreen.textContent = currentInput;
-}
 
-function clearDisplay() {
-  currentInput = '';
-  firstInput = '';
-  secondInput = '';
-  displayScreen.textContent = '';
-}
-
+/**
+ * 
+ * @param {*} num1 
+ * @param {*} num2 
+ * @returns 
+ *        The result from each operation. 
+ */     
 
 const addition = function(num1, num2) {
   return  num1 + num2;
@@ -109,6 +173,16 @@ const squareRoot = function(num) {
   return Math.sqrt(num);
 };
 
+
+/**
+ * 
+ * @param {*} num1 
+ * @param {*} operator 
+ * @param {*} num2 
+ * @returns 
+ *          The final result from the operation that have been called, stored in the global variable 'result'
+ *            and passed for using it with the showResult function.
+ */
 const operate = function(num1, operator, num2) {
   switch (operator) {
     case '+':
@@ -117,10 +191,10 @@ const operate = function(num1, operator, num2) {
     case '-':
       result = subtraction(num1, num2);
       break;
-    case '*':
+    case 'x':
       result = multiplication(num1, num2);
       break;
-    case '/':
+    case '÷':
       result = division(num1, num2);
       break;
     case '%':
@@ -137,3 +211,23 @@ const operate = function(num1, operator, num2) {
   }
   return result;
 };
+
+// Cleaner functions
+function deleteLastInput() {
+  currentInput = displayScreen.textContent;
+  currentInput = currentInput.slice(0, -1);
+  displayScreen.textContent = currentInput;
+}
+
+function clearDisplay() {
+  currentInput = '';
+  firstInput = '';
+  result = '';
+  displayScreen.textContent = '';
+  operator = '';
+}
+
+// Utility functions
+function convertStringIntoNumber(input) {
+  return parseFloat(input);
+}
