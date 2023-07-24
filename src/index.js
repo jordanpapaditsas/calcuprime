@@ -17,6 +17,7 @@ const powerOperatorBtn = document.querySelector('#power-op');
 const sqrtOperatorBtn = document.querySelector('#sqrt-op');
 const equalsBtn = document.querySelector('#equals');
 const splitterBtn = document.querySelector('#splitter');
+const allOpBtns = document.querySelectorAll('.op-btn');
 
 // Event Listeners
 clearBtn.addEventListener('click', clearDisplay);
@@ -50,7 +51,7 @@ function getSqrt(event) {
 
   if (target && operator === '') {
     operator = '√';
-    displayScreen.textContent = operator;
+    displayScreen.textContent = operator + currentInput;
     firstInput += currentInput;
     currentInput = '';
   }
@@ -60,8 +61,8 @@ function getPower(event) {
   let target = event.target;
 
   if (target && operator === '') {
-    operator = 'x²';
-    displayScreen.textContent = operator;
+    operator = '^';
+    displayScreen.textContent = currentInput + operator;
     firstInput += currentInput;
     currentInput = '';
   }
@@ -71,8 +72,8 @@ function getModulo(event) {
   let target = event.target;
 
   if (target && operator === '') {
-    operator = '%';
-    displayScreen.textContent = operator;
+    operator = 'Mod';
+    displayScreen.textContent = currentInput + operator;
     firstInput += currentInput;
     currentInput = '';
   }
@@ -83,7 +84,7 @@ function getDivision(event) {
 
   if (target && operator === '') {
     operator = '÷';
-    displayScreen.textContent = operator;
+    displayScreen.textContent = currentInput + operator;
     firstInput += currentInput;
     currentInput = '';
   }
@@ -95,7 +96,7 @@ function getMultiplication(event) {
 
   if (target && operator === '') {
     operator = 'x';
-    displayScreen.textContent = operator;
+    displayScreen.textContent = currentInput + operator;
     firstInput += currentInput;
     currentInput = '';
   }
@@ -106,7 +107,7 @@ function getSubtraction(event) {
 
   if (target && operator === '') {
     operator = '-';
-    displayScreen.textContent = operator;
+    displayScreen.textContent = currentInput + operator;
     firstInput += currentInput;
     currentInput = '';
   }
@@ -117,9 +118,11 @@ function getAddition(event) {
  
   if (target && operator === '') {
     operator = '+';
-    displayScreen.textContent = operator;
+    displayScreen.textContent = currentInput + operator;
     firstInput += currentInput;
     currentInput = '';
+  } else if (target.className === 'allOpBtns' && operator === '+') {
+    
   }
 }
 
@@ -132,7 +135,6 @@ function showDisplayInput(event) {
   }
 }
 
-
 /**
  * 
  * @param {*} num1 
@@ -140,7 +142,6 @@ function showDisplayInput(event) {
  * @returns 
  *        The result from each operation. 
  */     
-
 const addition = function(num1, num2) {
   return  num1 + num2;
 };
@@ -173,7 +174,6 @@ const squareRoot = function(num) {
   return Math.sqrt(num);
 };
 
-
 /**
  * 
  * @param {*} num1 
@@ -197,10 +197,10 @@ const operate = function(num1, operator, num2) {
     case '÷':
       result = division(num1, num2);
       break;
-    case '%':
+    case 'Mod':
       result = modulo(num1, num2);
       break;
-    case 'x²':
+    case '^':
       result = power(num1, num2);
       break;
     case '√':
