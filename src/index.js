@@ -34,18 +34,6 @@ modOperatorBtn.addEventListener('click', getModulo);
 powerOperatorBtn.addEventListener('click', getPower);
 sqrtOperatorBtn.addEventListener('click', getSqrt);
 
-function showResults() {
-  const num1 = convertStringIntoNumber(firstInput);
-  const num2 = convertStringIntoNumber(currentInput);
-  result = operate(num1, operator, num2);
-
-  displayScreen.textContent = result;
-  displayScreen.style.textAlign = 'center';
-  firstInput = '';
-  operator = '';
-  currentInput = result;
-}
-
 function getSqrt(event) {
   let target = event.target;
 
@@ -126,15 +114,6 @@ function getAddition(event) {
   }
 }
 
-function showDisplayInput(event) {
-  let target = event.target;
-
-  if (target.className === 'calc-btn') {
-    displayScreen.textContent += target.textContent;
-    currentInput += target.textContent;
-  }
-}
-
 /**
  * 
  * @param {*} num1 
@@ -207,7 +186,7 @@ const operate = function(num1, operator, num2) {
       result = squareRoot(num1);  
       break;
     default:
-      return 'Something went wrong!';
+      return error = `Oups! An error occurred!`;
   }
   return result;
 };
@@ -228,6 +207,29 @@ function clearDisplay() {
 }
 
 // Utility functions
+function showDisplayInput(event) {
+  let target = event.target;
+
+  if (target.className === 'calc-btn') {
+    displayScreen.textContent += target.textContent;
+    currentInput += target.textContent;
+  }
+}
+
 function convertStringIntoNumber(input) {
   return parseFloat(input);
 }
+
+function showResults() {
+  const num1 = convertStringIntoNumber(firstInput);
+  const num2 = convertStringIntoNumber(currentInput);
+  result = operate(num1, operator, num2);
+
+  displayScreen.textContent = result;
+  displayScreen.style.textAlign = 'center';
+  firstInput = '';
+  operator = '';
+  currentInput = result;
+}
+
+
