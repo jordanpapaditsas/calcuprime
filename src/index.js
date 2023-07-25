@@ -42,7 +42,6 @@ function getSqrt(event) {
     operator = '√';
     displayScreen.textContent = operator + currentInput;
     firstInput += currentInput;
-    currentInput = '';
   }
 }
 
