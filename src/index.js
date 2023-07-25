@@ -2,6 +2,7 @@ let currentInput = '';
 let firstInput = '';
 let operator = '';
 let result = '';
+let errorMessage = `Oups! An Error occurred!`;
 
 // Query Selectors
 const displayScreen = document.querySelector('#display');
@@ -43,7 +44,7 @@ function getSqrt(event) {
     firstInput += currentInput;
     currentInput = '';
   }
-} 
+}
 
 function getPower(event) {
   let target = event.target;
@@ -109,8 +110,6 @@ function getAddition(event) {
     displayScreen.textContent = currentInput + operator;
     firstInput += currentInput;
     currentInput = '';
-  } else if (target.className === 'allOpBtns' && operator === '+') {
-    
   }
 }
 
@@ -158,9 +157,9 @@ const squareRoot = function(num) {
  * @param {*} num1 
  * @param {*} operator 
  * @param {*} num2 
- * @returns 
- *          The final result from the operation that have been called, stored in the global variable 'result'
- *            and passed for using it with the showResult function.
+ * @returns               
+ *         The final result from the operation that have been called, stored in the global variable 'result'
+ *           and passed for using it with the showResult function.
  */
 const operate = function(num1, operator, num2) {
   switch (operator) {
@@ -186,25 +185,11 @@ const operate = function(num1, operator, num2) {
       result = squareRoot(num1);  
       break;
     default:
-      return error = `Oups! An error occurred!`;
+      result = errorMessage;
+      displayErrorMessage(errorMessage);
   }
   return result;
 };
-
-// Cleaner functions
-function deleteLastInput() {
-  currentInput = displayScreen.textContent;
-  currentInput = currentInput.slice(0, -1);
-  displayScreen.textContent = currentInput;
-}
-
-function clearDisplay() {
-  currentInput = '';
-  firstInput = '';
-  result = '';
-  displayScreen.textContent = '';
-  operator = '';
-}
 
 // Utility functions
 function showDisplayInput(event) {
@@ -220,16 +205,49 @@ function convertStringIntoNumber(input) {
   return parseFloat(input);
 }
 
-function showResults() {
-  const num1 = convertStringIntoNumber(firstInput);
-  const num2 = convertStringIntoNumber(currentInput);
-  result = operate(num1, operator, num2);
+function showResults(event) {
+  let target = event.target;
+  if ((target.id === 'equals' && displayScreen.textContent === '') || 
+      (target.id === 'equals' && displayScreen.textContent !== '' && operator === '') ||
+      (target.id === 'equals' && displayScreen.textContent !== '' && operator !== '' && 
+       currentInput === '')) {
+        equalsBtn.classList.remove();
+     } else {
+    const num1 = convertStringIntoNumber(firstInput);
+    const num2 = convertStringIntoNumber(currentInput);
+    result = operate(num1, operator, num2);
 
-  displayScreen.textContent = result;
-  displayScreen.style.textAlign = 'center';
-  firstInput = '';
-  operator = '';
-  currentInput = result;
+    displayScreen.textContent = result;
+    displayScreen.style.textAlign = 'center';
+    firstInput = '';
+    operator = '';
+    currentInput = result;
+  } 
 }
 
+function displayErrorMessage(errorMessage) {
+  if (errorMessage) {
+    displayScreen.textContent = errorMessage;
+    displayScreen.style.fontSize = '1.6rem';
+    displayScreen.style.alignItems = 'center';
+    displayScreen.style.justifyContent = 'center';
+  } 
+}
 
+function deleteLastInput() {
+  currentInput = displayScreen.textContent;
+  currentInput = currentInput.slice(0, -1);
+  displayScreen.textContent = currentInput;
+}
+
+function clearDisplay() {
+  currentInput = '';
+  firstInput = '';
+  result = '';
+  operator = '';
+
+  displayScreen.textContent = '';
+  displayScreen.style.fontSize = '2.5rem';
+  displayScreen.style.alignItems = 'flex-end';
+  displayScreen.style.justifyContent = 'flex-end';
+}
