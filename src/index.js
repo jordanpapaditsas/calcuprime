@@ -270,7 +270,7 @@ function clearDisplay() {
   displayScreen.style.alignItems = 'flex-end';
   displayScreen.style.justifyContent = 'flex-end';
 }
-
+    
 /**
  *   Last task:  Chain expressions
  *  I will need to give the result from the first operation and set it as first input and set operator into current operator.
