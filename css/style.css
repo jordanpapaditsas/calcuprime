@@ -39,7 +39,7 @@ span {
   border: 1px solid rgb(0, 0, 0);
   border-radius: 0.5rem;
   width: 90%;
-  height: 13vh;
+  min-height: 15vh;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
