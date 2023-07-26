@@ -2,7 +2,7 @@ let currentInput = '';
 let firstInput = '';
 let operator = '';
 let result = '';
-let errorMessage = `Oups! An Error occurred!`;
+const errorMessage = `Oups! An Error occurred!`;
 
 // Query Selectors
 const displayScreen = document.querySelector('#display');
@@ -24,6 +24,7 @@ const allOpBtns = document.querySelectorAll('.op-btn');
 clearBtn.addEventListener('click', clearDisplay);
 delBtn.addEventListener('click', deleteLastInput);
 equalsBtn.addEventListener('click', showResults);
+splitterBtn.addEventListener('click', addSplitter);
 allCalcBtns.forEach((button) => {
   button.addEventListener('click', showDisplayInput);
 });
@@ -35,6 +36,12 @@ modOperatorBtn.addEventListener('click', getModulo);
 powerOperatorBtn.addEventListener('click', getPower);
 sqrtOperatorBtn.addEventListener('click', getSqrt);
 
+/**
+ * 
+ * @param {*} event
+ *              Gets a function operation and forward it for 
+ *                the specific Event Listener that called it.  
+ */
 function getSqrt(event) {
   let target = event.target;
 
@@ -224,6 +231,15 @@ function showResults(event) {
   } 
 }
 
+function addSplitter(event) {
+  let target = event.target;  
+
+  if (target.id === 'splitter' && !currentInput.includes('.')) {
+    currentInput += '.'
+    displayScreen.textContent += target.textContent;
+  }
+}
+
 function displayErrorMessage(errorMessage) {
   if (errorMessage) {
     displayScreen.textContent = errorMessage;
@@ -250,3 +266,10 @@ function clearDisplay() {
   displayScreen.style.alignItems = 'flex-end';
   displayScreen.style.justifyContent = 'flex-end';
 }
+
+
+//  String together several operations  last task! 
+/**
+ *  First I give first input, an operator and a second input which is the current input, If i click on a different operator
+ *  I will need to give the result from the first operation and set it as first input and set operator into current operator.
+ */
