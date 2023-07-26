@@ -221,7 +221,7 @@ function showResults(event) {
      } else {
     const num1 = convertStringIntoNumber(firstInput);
     const num2 = convertStringIntoNumber(currentInput);
-    result = operate(num1, operator, num2);
+    roundResult(result = operate(num1, operator, num2));
 
     displayScreen.textContent = result;
     displayScreen.style.textAlign = 'center';
@@ -229,6 +229,10 @@ function showResults(event) {
     operator = '';
     currentInput = result;
   } 
+}
+
+function roundResult(input) {
+  return Math.round(input * 1000) / 1000
 }
 
 function addSplitter(event) {
@@ -267,9 +271,7 @@ function clearDisplay() {
   displayScreen.style.justifyContent = 'flex-end';
 }
 
-
-//  String together several operations  last task! 
 /**
- *  First I give first input, an operator and a second input which is the current input, If i click on a different operator
+ *   Last task:  Chain expressions
  *  I will need to give the result from the first operation and set it as first input and set operator into current operator.
  */

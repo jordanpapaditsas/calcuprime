@@ -124,3 +124,32 @@ button:hover {
 #delete:hover, #clear:hover {
   background-color: rgb(219, 163, 88);
 }
+
+@media (max-width: 640px) {
+  #container {
+    position: relative;
+    bottom: 30rem;
+    width: 20rem;
+  }
+
+  footer {
+    position: relative;
+    top: -3rem;
+  }
+}
+
+@media (max-width: 375px) and (max-height: 667px) {
+  p {
+    display: none;
+  }
+
+  #container {
+    margin-top: -3rem;
+  }
+}
+
+@media (max-height: 806px) {
+  p {
+    display: none;
+  }
+}
