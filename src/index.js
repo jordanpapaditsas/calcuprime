@@ -139,11 +139,7 @@ const multiplication = function(num1, num2) {
 };
 
 const division = function(num1, num2) {
-  if (num1 <= 0) {
-    return 'Error, cannot divide with 0!';
-  } else {
     return num1 / num2;
-  }
 };
 
 const modulo = function(num1, num2) {
@@ -179,6 +175,10 @@ const operate = function(num1, operator, num2) {
       result = multiplication(num1, num2);
       break;
     case '÷':
+      if (num2 === 0) {
+        displayErrorMessage(errorMessage);
+        return errorMessage;
+      }
       result = division(num1, num2);
       break;
     case 'Mod':
@@ -191,8 +191,8 @@ const operate = function(num1, operator, num2) {
       result = squareRoot(num1);  
       break;
     default:
-      result = errorMessage;
       displayErrorMessage(errorMessage);
+      return errorMessage;
   }
   return result;
 };
@@ -232,7 +232,7 @@ function showResults(event) {
 }
 
 function roundResult(input) {
-  return Math.round(input * 1000) / 1000
+  return Math.round(input * 1000) / 1000;
 }
 
 function addSplitter(event) {
