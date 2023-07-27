@@ -5,7 +5,7 @@ A web-based calculator application made with Flexbox layout, with an interactive
 including Modulo, Addition, Subtraction, Multiplication, Division, Power, and Square Root.  
 Includes a user-friendly message whenever division by zero is attempted.
 ## Live Preview
-~ https://jordanpapaditsas.github.io/calculator/
+~ https://jordanpapaditsas.github.io/calcuprime/
 
 ## Features
 <ul>
