@@ -48,6 +48,10 @@ sqrtOperatorBtn.addEventListener('click', getSqrt);
 function getSqrt(event) {
   let target = event.target;
 
+  if (currentInput === '' && displayScreen.textContent === '') {
+    return;
+  }
+
   if (target && operator === '') {
     operator = '√';
     displayScreen.textContent = operator + currentInput;
@@ -57,6 +61,10 @@ function getSqrt(event) {
 
 function getPower(event) {
   let target = event.target;
+
+  if (currentInput === '' && displayScreen.textContent === '') {
+    return;
+  }
 
   if (target && operator === '') {
     operator = '^';
@@ -69,6 +77,10 @@ function getPower(event) {
 function getModulo(event) {
   let target = event.target;
 
+  if (currentInput === '' && displayScreen.textContent === '') {
+    return;
+  }
+
   if (target && operator === '') {
     operator = 'Mod';
     displayScreen.textContent = currentInput + operator;
@@ -79,6 +91,10 @@ function getModulo(event) {
 
 function getDivision(event) {
   let target = event.target;
+
+  if (currentInput === '' && displayScreen.textContent === '') {
+    return;
+  }
 
   if (target && operator === '') {
     operator = '÷';
@@ -91,6 +107,10 @@ function getDivision(event) {
 function getMultiplication(event) {
   let target = event.target;
 
+  if (currentInput === '' && displayScreen.textContent === '') {
+    return;
+  }
+
   if (target && operator === '') {
     operator = 'x';
     displayScreen.textContent = currentInput + operator;
@@ -102,6 +122,10 @@ function getMultiplication(event) {
 function getSubtraction(event) {
   let target = event.target;
 
+  if (currentInput === '' && displayScreen.textContent === '') {
+    return;
+  }
+
   if (target && operator === '') {
     operator = '-';
     displayScreen.textContent = currentInput + operator;
@@ -112,13 +136,17 @@ function getSubtraction(event) {
 
 function getAddition(event) {
   let target = event.target;
+
+  if (currentInput === '' && displayScreen.textContent === '') {
+    return;
+  }
  
   if (target && operator === '') {
     operator = '+';
     displayScreen.textContent = currentInput + operator;
     firstInput += currentInput;
     currentInput = '';
-  }
+  } 
 }
 
 /**
