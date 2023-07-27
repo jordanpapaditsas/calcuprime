@@ -28,6 +28,9 @@ splitterBtn.addEventListener('click', addSplitter);
 allCalcBtns.forEach((button) => {
   button.addEventListener('click', showDisplayInput);
 });
+allOpBtns.forEach((button) => {
+  button.addEventListener('click', getSingleOperationResult);
+});
 addOperatorBtn.addEventListener('click', getAddition);
 subOperatorBtn.addEventListener('click', getSubtraction);
 mulOperatorBtn.addEventListener('click', getMultiplication);
@@ -83,7 +86,6 @@ function getDivision(event) {
     firstInput += currentInput;
     currentInput = '';
   }
-
 } 
 
 function getMultiplication(event) {
@@ -228,7 +230,34 @@ function showResults(event) {
     firstInput = '';
     operator = '';
     currentInput = result;
-  } 
+  }
+}
+
+/**
+ * 
+ * @param {*} event
+ *              Executes the current operation that is given and returns the result, 
+ *                if a different operator gets fired.
+ */
+function getSingleOperationResult(event) {
+  let target = event.target;
+
+  if (target.className === 'op-btn' && operator !== '') {
+    const num1 = convertStringIntoNumber(firstInput);
+    const num2 = convertStringIntoNumber(currentInput);
+    result = operate(num1, operator, num2);
+    operator = target.textContent;
+    displayScreen.textContent = result;
+    if (operator !== '=') {
+      displayScreen.textContent = result + operator;
+      firstInput = result;
+      currentInput = '';
+    } else {
+      displayScreen.textContent = result;
+      firstInput = result;
+      currentInput = '';
+    }
+  }
 }
 
 function roundResult(input) {
@@ -270,8 +299,3 @@ function clearDisplay() {
   displayScreen.style.alignItems = 'flex-end';
   displayScreen.style.justifyContent = 'flex-end';
 }
-    
-/**
- *   Last task:  Chain expressions
- *  I will need to give the result from the first operation and set it as first input and set operator into current operator.
- */
