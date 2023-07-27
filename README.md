@@ -1,9 +1,9 @@
-# Calculator
+# Calcuprime
 
 ## Description 
-A web-based application made with Flexbox layout, with a fully interactive user interface that provides various mathematical operations,  
-including Modulo, Addition, Subtraction, Multiplication, Division, Power, and Square Root.
-
+A web-based calculator application made with Flexbox layout, with an interactive user interface that provides various mathematical operations,  
+including Modulo, Addition, Subtraction, Multiplication, Division, Power, and Square Root.  
+Includes a user-friendly message whenever division by zero is attempted.
 ## Live Preview
 ~ https://jordanpapaditsas.github.io/calculator/
 
