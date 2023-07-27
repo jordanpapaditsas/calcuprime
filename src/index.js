@@ -268,7 +268,7 @@ function addSplitter(event) {
   let target = event.target;  
 
   if (target.id === 'splitter' && !currentInput.includes('.')) {
-    currentInput += '.'
+    currentInput += '.';
     displayScreen.textContent += target.textContent;
   }
 }
