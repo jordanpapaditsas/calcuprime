@@ -17,14 +17,14 @@ const modOperatorBtn = document.querySelector('#modulo-op');
 const powerOperatorBtn = document.querySelector('#power-op');
 const sqrtOperatorBtn = document.querySelector('#sqrt-op');
 const equalsBtn = document.querySelector('#equals');
-const splitterBtn = document.querySelector('#splitter');
+const dotBtn = document.querySelector('#dot-id');
 const allOpBtns = document.querySelectorAll('.op-btn');
 
 // Event Listeners
 clearBtn.addEventListener('click', clearDisplay);
 delBtn.addEventListener('click', deleteLastInput);
 equalsBtn.addEventListener('click', showResults);
-splitterBtn.addEventListener('click', addSplitter);
+dotBtn.addEventListener('click', addDot);
 allCalcBtns.forEach((button) => {
   button.addEventListener('click', showDisplayInput);
 });
@@ -237,8 +237,8 @@ function showDisplayInput(event) {
   }
 }
 
-function convertStringIntoNumber(input) {
-  return parseFloat(input);
+function convertStringIntoNumber(number) {
+  return parseFloat(number);
 }
 
 function showResults(event) {
@@ -288,14 +288,14 @@ function getSingleOperationResult(event) {
   }
 }
 
-function roundResult(input) {
-  return Math.round(input * 1000) / 1000;
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000;
 }
 
-function addSplitter(event) {
+function addDot(event) {
   let target = event.target;  
 
-  if (target.id === 'splitter' && !currentInput.includes('.')) {
+  if (target.id === 'dot-id' && !currentInput.includes('.')) {
     currentInput += '.';
     displayScreen.textContent += target.textContent;
   }
