@@ -2,7 +2,7 @@ let currentInput = '';
 let firstInput = '';
 let operator = '';
 let result = '';
-const errorMessage = `Oups! An Error occurred!`;
+const ERROR_MESSAGE = 'Oups! An Error occurred!';
 
 // Query Selectors
 const displayScreen = document.querySelector('#display');
@@ -192,6 +192,7 @@ const squareRoot = function(num) {
  * @returns               
  *         The final result from the operation that have been called, stored in the global variable 'result'
  *           and passed for using it with the showResult function.
+ *            Handles invalid actions with an informative error message.
  */
 const operate = function(num1, operator, num2) {
   switch (operator) {
@@ -206,8 +207,8 @@ const operate = function(num1, operator, num2) {
       break;
     case '÷':
       if (num2 === 0) {
-        displayErrorMessage(errorMessage);
-        return errorMessage;
+        displayErrorMessage(ERROR_MESSAGE);
+        return ERROR_MESSAGE;
       }
       result = division(num1, num2);
       break;
@@ -221,8 +222,8 @@ const operate = function(num1, operator, num2) {
       result = squareRoot(num1);  
       break;
     default:
-      displayErrorMessage(errorMessage);
-      return errorMessage;
+      displayErrorMessage(ERROR_MESSAGE);
+      return ERROR_MESSAGE;
   }
   return result;
 };
@@ -301,9 +302,9 @@ function addDot(event) {
   }
 }
 
-function displayErrorMessage(errorMessage) {
-  if (errorMessage) {
-    displayScreen.textContent = errorMessage;
+function displayErrorMessage(ERROR_MESSAGE) {
+  if (ERROR_MESSAGE) {
+    displayScreen.textContent = ERROR_MESSAGE;
     displayScreen.style.fontSize = '1.6rem';
     displayScreen.style.alignItems = 'center';
     displayScreen.style.justifyContent = 'center';
