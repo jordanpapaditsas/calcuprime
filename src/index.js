@@ -2,7 +2,7 @@ let currentInput = '';
 let firstInput = '';
 let operator = '';
 let result = '';
-const errorMessage = `Oups! An Error occurred!`;
+const ERROR_MESSAGE = 'Oups! An Error occurred!';
 
 // Query Selectors
 const displayScreen = document.querySelector('#display');
@@ -17,14 +17,14 @@ const modOperatorBtn = document.querySelector('#modulo-op');
 const powerOperatorBtn = document.querySelector('#power-op');
 const sqrtOperatorBtn = document.querySelector('#sqrt-op');
 const equalsBtn = document.querySelector('#equals');
-const splitterBtn = document.querySelector('#splitter');
+const dotBtn = document.querySelector('#dot-id');
 const allOpBtns = document.querySelectorAll('.op-btn');
 
 // Event Listeners
 clearBtn.addEventListener('click', clearDisplay);
 delBtn.addEventListener('click', deleteLastInput);
 equalsBtn.addEventListener('click', showResults);
-splitterBtn.addEventListener('click', addSplitter);
+dotBtn.addEventListener('click', addDot);
 allCalcBtns.forEach((button) => {
   button.addEventListener('click', showDisplayInput);
 });
@@ -192,6 +192,7 @@ const squareRoot = function(num) {
  * @returns               
  *         The final result from the operation that have been called, stored in the global variable 'result'
  *           and passed for using it with the showResult function.
+ *            Handles invalid actions with an informative error message.
  */
 const operate = function(num1, operator, num2) {
   switch (operator) {
@@ -206,8 +207,8 @@ const operate = function(num1, operator, num2) {
       break;
     case '÷':
       if (num2 === 0) {
-        displayErrorMessage(errorMessage);
-        return errorMessage;
+        displayErrorMessage(ERROR_MESSAGE);
+        return ERROR_MESSAGE;
       }
       result = division(num1, num2);
       break;
@@ -221,8 +222,8 @@ const operate = function(num1, operator, num2) {
       result = squareRoot(num1);  
       break;
     default:
-      displayErrorMessage(errorMessage);
-      return errorMessage;
+      displayErrorMessage(ERROR_MESSAGE);
+      return ERROR_MESSAGE;
   }
   return result;
 };
@@ -237,8 +238,8 @@ function showDisplayInput(event) {
   }
 }
 
-function convertStringIntoNumber(input) {
-  return parseFloat(input);
+function convertStringIntoNumber(number) {
+  return parseFloat(number);
 }
 
 function showResults(event) {
@@ -288,22 +289,22 @@ function getSingleOperationResult(event) {
   }
 }
 
-function roundResult(input) {
-  return Math.round(input * 1000) / 1000;
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000;
 }
 
-function addSplitter(event) {
+function addDot(event) {
   let target = event.target;  
 
-  if (target.id === 'splitter' && !currentInput.includes('.')) {
+  if (target.id === 'dot-id' && !currentInput.includes('.')) {
     currentInput += '.';
     displayScreen.textContent += target.textContent;
   }
 }
 
-function displayErrorMessage(errorMessage) {
-  if (errorMessage) {
-    displayScreen.textContent = errorMessage;
+function displayErrorMessage(ERROR_MESSAGE) {
+  if (ERROR_MESSAGE) {
+    displayScreen.textContent = ERROR_MESSAGE;
     displayScreen.style.fontSize = '1.6rem';
     displayScreen.style.alignItems = 'center';
     displayScreen.style.justifyContent = 'center';
